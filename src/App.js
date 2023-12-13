@@ -63,7 +63,7 @@ function App() {
   }
 
   return (
-    
+    <Router basename="/first-react-app">
     <div>
       <Navbar />
       <div id="main">
@@ -102,6 +102,7 @@ function App() {
 
       <Footer />
     </div>
+    </Router>
     
   );
 }
