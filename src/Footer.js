@@ -8,7 +8,7 @@ const Footer = () => {
         <div class="container d-flex justify-content-center py-3">
         </div>
         <div class="text-center text-black p-1" >
-          © 2023 Copyright:
+          
           <a class="text-black" href="https://jrdnspamportfolio.netlify.app/"> @jrdnspam</a>
         </div>
       </footer>

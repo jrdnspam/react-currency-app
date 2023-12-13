@@ -65,31 +65,39 @@ function App() {
     <div>
       <Navbar />
       <div id="main">
-      <h1>Currency Converter</h1>
-      {currencyRates ? (
-        <>
-          <CurrencyInput
-            amount={amountOne}
-            currency={currencyOne}
-            currencies={Object.keys(currencyRates)}
-            onAmountChange={handleAmountOneChange}
-            onCurrencyChange={handleCurrencyOneChange}
-            
-          />
-          <CurrencyInput
-            amount={amountTwo}
-            currency={currencyTwo}
-            currencies={Object.keys(currencyRates)}
-            onAmountChange={handleAmountTwoChange}
-            onCurrencyChange={handleCurrencyTwoChange}
-            
-          />
+        <div class="card">
+          <h1>Currency Converter</h1>
+          {currencyRates ? (
+            <>
+              <CurrencyInput
+                amount={amountOne}
+                currency={currencyOne}
+                currencies={Object.keys(currencyRates)}
+                onAmountChange={handleAmountOneChange}
+                onCurrencyChange={handleCurrencyOneChange}
+
+              />
+              <CurrencyInput
+                amount={amountTwo}
+                currency={currencyTwo}
+                currencies={Object.keys(currencyRates)}
+                onAmountChange={handleAmountTwoChange}
+                onCurrencyChange={handleCurrencyTwoChange}
+
+              />
+
+            </>
+          ) : (
+            <p>Loading...</p>
+          )}
           
-        </>
-      ) : (
-        <p>Loading...</p>
-      )}
+        </div>
+        <div class="card">
+          <ExchangeRates />
+        </div>
+        
       </div>
+
       <Footer />
     </div>
   );

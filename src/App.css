@@ -3,6 +3,13 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 100vh;
-  background-color: rgb(73, 72, 72);
+  background-color: rgb(53, 52, 52);
+}
+
+.card {
+  margin: 10px;
+  padding: 30px;
+  background-color: rgb(94, 94, 94);
+  border: solid 1px rgb(176, 176, 176);
+  
 }

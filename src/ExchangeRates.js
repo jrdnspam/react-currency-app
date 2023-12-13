@@ -1,27 +1,68 @@
-const ExchangeRates = ({ currency, currencies, onCurrencyChange, exchangeRates }) => {
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+
+const ExchangeRateList = () => {
+  const [baseCurrency, setBaseCurrency] = useState('USD');
+  const [exchangeRates, setExchangeRates] = useState(null);
+  const [currencies, setCurrencies] = useState([]);
+
+  const fetchCurrencies = async () => {
+    try {
+      const response = await axios.get('https://api.frankfurter.app/currencies');
+      setCurrencies(Object.keys(response.data));
+    } catch (error) {
+      console.error('Error fetching currencies:', error);
+      setCurrencies([]);
+    }
+  };
+
+  const fetchExchangeRates = async () => {
+    try {
+      const response = await axios.get(`https://api.frankfurter.app/latest?from=${baseCurrency}`);
+      setExchangeRates(response.data.rates);
+    } catch (error) {
+      console.error('Error fetching exchange rates:', error);
+      setExchangeRates(null);
+    }
+  };
+
+  useEffect(() => {
+    fetchCurrencies();
+  }, []);
+
+  useEffect(() => {
+    fetchExchangeRates();
+  }, [baseCurrency]);
+
+  const handleBaseCurrencyChange = (newBaseCurrency) => {
+    setBaseCurrency(newBaseCurrency);
+  };
+
   return (
     <div>
-       {exchangeRates && (
-        <div>
-          <h3>Exchange Rates:</h3>
-          <select value={currency} onChange={(e) => onCurrencyChange(e.target.value)}>
-        {currencies.map(currency => (
-          <option value={currency}>
+      <h2>Exchange Rates for {baseCurrency}</h2>
+      <label>Select Base Currency:</label>
+      <select value={baseCurrency} onChange={(e) => handleBaseCurrencyChange(e.target.value)}>
+        {currencies.map((currency) => (
+          <option key={currency} value={currency}>
             {currency}
           </option>
         ))}
       </select>
-          <ul>
-            {currencies.map((currencyOption) => (
-              <li key={currencyOption}>
-                {currencyOption}: {exchangeRates[currencyOption]}
-              </li>
-            ))}
-          </ul>
-        </div>
+
+      {exchangeRates ? (
+        <ul>
+          {Object.entries(exchangeRates).map(([currency, rate]) => (
+            <li key={currency}>
+              {currency}: {rate}
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>Loading exchange rates...</p>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default ExchangeRates;
+export default ExchangeRateList;

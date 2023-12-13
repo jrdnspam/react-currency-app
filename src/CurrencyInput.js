@@ -28,7 +28,9 @@ const CurrencyInput = ({ amount, currency, currencies, onAmountChange, onCurrenc
           </ul>
         </div>
       )}
+      
     </div>
+    
   )
 }
 
