@@ -63,7 +63,7 @@ function App() {
   }
 
   return (
-    <Router basename="/react-currency-app">
+    
     <div>
       <Navbar />
       <div id="main">
@@ -102,7 +102,7 @@ function App() {
 
       <Footer />
     </div>
-    </Router>
+    
   );
 }
 
