@@ -11,6 +11,7 @@ import Footer from './Footer';
 
 
 function App() {
+  
   const [amountOne, setAmountOne] = useState(1);
   const [amountTwo, setAmountTwo] = useState(1.52);
   const [currencyOne, setCurrencyOne] = useState("USD");
@@ -62,6 +63,7 @@ function App() {
   }
 
   return (
+    <Router basename="/react-currency-app">
     <div>
       <Navbar />
       <div id="main">
@@ -100,6 +102,7 @@ function App() {
 
       <Footer />
     </div>
+    </Router>
   );
 }
 
